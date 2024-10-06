@@ -324,7 +324,7 @@ function updateCart() {
                 </p>
                 ${item.ingredients.length > 0 ? `<p>مكونات: ${item.ingredients.join(', ')}</p>` : ''}
             </div>
-            <button onclick="removeFromCart(${index})" style="width: 20px; border: none; background: none; margin-left: 20px; font-size: 16px; cursor: pointer;">
+            <button onclick="removeFromCart(${index})" style="width: 20px; border: none; background: none; margin-left: 20px; font-size: 16px; cursor: pointer;color:black;">
                 <i class="fa-regular fa-trash-can"></i>
             </button>
         `;
