@@ -426,11 +426,12 @@ function checkout() {
     const checkoutForm = document.getElementById('checkout-form');
     const evreything = document.querySelector('.container');
     const messageElement = document.getElementById('message'); // احصل على العنصر
-
+    const buttonsContainer = document.getElementById('buttonsContainer');
     if (cart.length > 0) { // تحقق من وجود منتجات في السلة
         checkoutForm.style.display = 'block';
         evreything.style.display = 'none';
         messageElement.style.display = 'none'; // إخفاء الرسالة إذا كانت السلة تحتوي على منتجات
+        buttonsContainer.style.display = 'none';
         closeCart();
     } else {
         messageElement.style.display = 'block'; // عرض الرسالة إذا لم يكن هناك منتجات في السلة
