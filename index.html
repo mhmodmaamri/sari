@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="styles.css">
-        <title> ساري برجر</title>
+        <title>متجر ساري برجر - ألذ البرجر في المدينة</title>
     
         <!-- تحسين محركات البحث -->
         <meta name="description" content="تسوق أفضل البرجر في Sari Burgers. نقدم لك تشكيلة لذيذة من البرجر الطازج والمشروبات. اطلب الآن واستمتع بتجربة تناول طعام فريدة.">
@@ -12,6 +12,7 @@
         <meta name="author" content="mahmoud maamreh">
     
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta property="og:url" content="https://www.alvio.co.il/">
         <meta property="og:image" content="socal.png">
         <meta property="og:title" content="متجر ساري برجر - ألذ البرجر في المدينة">
         <meta property="og:description" content="تسوق أفضل البرجر في Sari Burgers.">
@@ -375,7 +376,8 @@ background: none; /* عدم وجود خلفية */
             <h2 style="text-align: right;    margin-top: 30px;    margin-right: 30px;">اختار مكونات البرجر</h2>
             <div id="customize-1" class="customize-options" style="padding: 0px 25px;    padding: 0px 25px;
     margin-top: 35px;">
-                <div id="customize-1" class="customize-options">
+                <div id="customize-1" class="customize-options" style="    max-height: 67vh;
+    overflow: auto;">
                     <label>
                         <div class="text-image-container">
                             <img src="cheese.jpg" alt="جبن" style="width: 65px;">
@@ -456,6 +458,26 @@ background: none; /* عدم وجود خلفية */
                         height: 15px;"                  
                     >
                     </label>
+                    <label>
+                        <div class="text-image-container">
+                            <img src="barbiq.jpg" alt="باربكيو " style="width: 65px;">
+                            <span>باربكيو </span>
+                        </div>
+                        <input type="checkbox" value="باربكيو " style="
+                        width: 15px;
+                        height: 15px;"                  
+                    >
+                    </label>
+                    <label>
+                        <div class="text-image-container">
+                            <img src="faim.jpg" alt="صلصة الفاييم" style="width: 65px;">
+                            <span>صلصة الفاييم</span>
+                        </div>
+                        <input type="checkbox" value="صلصة الفاييم" style="
+                        width: 15px;
+                        height: 15px;"                  
+                    >
+                    </label>
                 </div>
                 
                 <button onclick="addToCart(1)"
@@ -504,7 +526,7 @@ background: none; /* عدم وجود خلفية */
         <div id="cart-items" style="
             height: 100%;
             overflow: auto;
-            height: 72vh;
+            height: 75vh;
             "></div>
         <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 15px 10px;   background: #fff;">
             <p id="message" style="display: none; text-align: center;">السلة فارغة، يرجى إضافة منتجات للتمكن من اتمام الطلب</p>
