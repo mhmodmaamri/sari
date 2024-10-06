@@ -2,7 +2,7 @@
 const products = [
     {
         id: 1,
-        name: " برجر الحب والغرام 220 جرام",
+        name: "برجر لحم 220 جرام",
         price: 35,
         discount: 50,
         image: '6.jpg',
@@ -11,7 +11,7 @@ const products = [
     },
     {
         id: 2,
-        name: "برجر الحب والغرام 120 جرام",
+        name: "برجر لحم 140 جرام",
         price: 25,
         discount: 40,
         type: "meat",
@@ -20,16 +20,16 @@ const products = [
     },
     {
         id: 5,
-        name: " 10x ميني برجر الحب والغرام 70 جرام",
-        price: 100,
-        discount: 150,
+        name: "برجر لحم 70 جرام",
+        price: 10,
+        discount: 20,
         type: "meat",
         image: '7.jpg',
         CartAdding: "bld",
     },
     {
         id: 8,
-        name: "برجر نار وشرار",
+        name: "برجر كرسبي دجاج كبير",
         price: 35,
         discount: 50,
         type: "checkin",
@@ -38,7 +38,7 @@ const products = [
     },
     {
         id: 29,
-        name: "10x ميني برجر نار وشرار ",
+        name: "برجر كرسبي دجاج صغير",
         price: 100,
         discount: 150,
         image: '8.jpg',
@@ -47,7 +47,7 @@ const products = [
     },
     {
         id: 6,
-        name: "برجر غالي ومغلغل",
+        name: "برجر صدور دجاج كبير",
         price: 25,
         discount: 50,
         type: "checkin",
@@ -56,16 +56,16 @@ const products = [
     },
     {
         id: 37,
-        name: "10x ميني برجر غالي ومغلغل ",
-        price: 100,
-        discount: 150,
+        name: "برجر صدور دجاج صغير",
+        price: 10,
+        discount: 15,
         type: "checkin",
         image: '9.jpg',
         CartAdding: "bld",
     },
     {
         id: 9,
-        name: "برجر فاخر عل اخر",
+        name: "برجر شنيتسل كبير بطعم الزعتر",
         price: 25,
         discount: 50,
         type: "checkin",
@@ -74,7 +74,7 @@ const products = [
     },
     {
         id: 58,
-        name: "10x ميني برجر فاخر عل اخر ",
+        name: "برجر شنيتسل صغير ",
         price: 100,
         discount: 150,
         type: "checkin",
@@ -88,15 +88,6 @@ const products = [
         discount: 35,
         type: "other",
         image: '3.jpg',
-        CartAdding: "",
-    },
-    {
-        id: 3,
-        name: 'شيبس كبير',
-        price: 15,
-        discount: 20,
-        type: "other",
-        image: '2.jpg',
         CartAdding: "",
     },
     {
