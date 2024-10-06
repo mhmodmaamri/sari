@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ar">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <title>متجر ساري برجر - ألذ البرجر في المدينة</title>
+    
+        <!-- تحسين محركات البحث -->
+        <meta name="description" content="تسوق أفضل البرجر في Sari Burgers. نقدم لك تشكيلة لذيذة من البرجر الطازج والمشروبات. اطلب الآن واستمتع بتجربة تناول طعام فريدة.">
+        <meta name="keywords" content="برجر, مطعم, طعام, وجبات سريعة, ساري برجر, طلب طعام, برجر طازج">
+        <meta name="author" content="mahmoud maamreh">
+    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta property="og:url" content="https://www.alvio.co.il/">
+        <meta property="og:image" content="socal.png">
+        <meta property="og:title" content="متجر ساري برجر - ألذ البرجر في المدينة">
+        <meta property="og:description" content="تسوق أفضل البرجر في Sari Burgers.">
+        <meta property="og:type" content="website">
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+        <link rel="stylesheet" href="assets/css/plugins.css">
+        <script src="https://kit.fontawesome.com/78815d2efa.js" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="venom-button.css">
+        <script type="text/javascript" src="venom-button.js"></script>
+        <div id="my45241Button" style="z-index: 99999;"></div>
+        <link rel="stylesheet" href="offers.css">
+        <link rel="icon" href="account.png" type="png">
+        <link rel="apple-touch-icon" sizes="180x180" href="account.png">
+        <link rel="icon" sizes="192x192" href="account.png">
+        <link rel="icon" sizes="512x512" href="account.png">
+        <meta name="theme-color" content="#ffffff">
+    </head>
+    
+<style>
+    .loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 2rem;
+        z-index: 1000;
+        background-color: #fefefe;
+    }
+    .wrapper {
+        display: none; /* Hide content initially */
+    }
+    .cartshoppingdiv {
+position: relative; /* لضبط المحتوى بداخل العنصر */
+}
+
+.cartshoppingcount {
+position: absolute;
+top: 0; /* تثبيت العنصر في الأعلى */
+right: 0; /* تثبيت العنصر في أقصى اليمين */
+color: #fff; /* لون النص */
+font-size: 14px; /* حجم الخط */
+font-weight: bold; /* سمك الخط */
+background: none; /* عدم وجود خلفية */
+}
+</style>
+
+<div class="loader" id="loader"><img src="loader.gif" alt="" width="300px" style="display: block;"></div>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="wrapper">
+        <header>
+            <div class="cartshoppingdiv show" id="hideme5" onclick="openCart()" style="cursor: pointer;">
+                <img src="gdfsdgf.png" alt="" width="65px" style="filter: invert(1%) brightness(1000000%) contrast(100%);">
+                <div class="cartshoppingcount" id="cart-count">0</div>
+            </div>
+        
+            <nav>
+            <a href="">
+                <img src="sari.png" alt="" style="    width: 150px;
+    filter: invert(1%) brightness(1000000%) contrast(100%); cursor: pointer;">
+            </a>
+            </nav>
+        </header>
+
+        <div class="cart"></div>
+
+
+
+<style>
+.cartshoppingdiv {
+    position: relative; /* لضبط المحتوى بداخل العنصر */
+}
+
+.cartshoppingcount {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    /* padding: 5px; */
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    background: none;
+    background: #bd2121;
+    border-radius: 50%;
+}
+
+
+</style>
+  <!-- الرسالة -->
+
+<div id="checkout-form" style="display: none; direction: rtl; height: 75vh; margin-top: 100px">
+
+
+
+    <div id="orderMessage" style="display: none;">
+        <h2>تم استلام طلبك</h2>
+        <h3>شكرًا لك <span id="customerName"></span> لاختيارك الشراء من عندنا</h3>
+        <p>نحن نقدر كثيرًا ثقتك بمنتجاتنا وخدماتنا. طلبك الآن قيد المعالجة، وسنقوم بتحديثك بمجرد وصوله.</p>
+        <!-- <p>إذا كان لديك أي أسئلة أو كنت بحاجة إلى مساعدة، لا تتردد في التواصل مع فريق الدعم لدينا.</p> -->
+        <button onclick="clearDataAndRedirect()">الاستمرار بالتسوق</button>
+    </div>
+    <script>
+        // Update the customer name every 100 milliseconds
+        function clearDataAndRedirect() {
+           // إزالة البيانات المحفوظة في localStorage أو sessionStorage
+           localStorage.clear(); // امسح جميع القيم المحفوظة في localStorage
+           // أو يمكنك استخدام sessionStorage.clear() إذا كنت تحفظ البيانات هناك
+           
+           // إعادة توجيه المستخدم إلى الصفحة المطلوبة
+           window.location.href = 'index.html';
+       }
+       setInterval(function() {
+           var customerNameElement = document.getElementById('customerName');
+           var nameInputElement = document.getElementById("name");
+           
+           if (nameInputElement) {
+               customerNameElement.innerText = nameInputElement.value;
+           }
+       }, 100); // You can adjust the interval as needed
+        // Replace 'שם הלקוח' with actual customer name
+       </script>
+
+<style>
+    
+#orderMessage {
+    background-color: #f9f9f9; /* خلفية فاتحة لتمييز الرسالة */
+    border: 1px solid #ddd; /* إطار خفيف حول العنصر */
+    border-radius: 8px; /* حواف دائرية لجعلها أكثر نعومة */
+    padding: 20px; /* مسافة داخلية حول المحتوى */
+    max-width: 600px; /* عرض أقصى للعنصر */
+    margin: 20px auto; /* توسيط العنصر عمودياً في الصفحة */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* ظل خفيف لإعطاء عمق */
+    text-align: center;
+    font-family: Arial, sans-serif; /* خط نظيف وسهل القراءة */
+    direction: rtl;
+    margin-top: 100px;
+    width: 90%;
+}
+
+#orderMessage h2 {
+    color: #010101; /* لون نص العنوان */
+    margin-top: 0; /* إزالة المسافة العلوية */
+    font-size: 26px; /* حجم الخط */
+}
+
+#orderMessage h3 {
+    color: #333; /* لون نص الترويسة */
+    margin: 25px 0 5px 0px; /* مسافة علوية وسفلية */
+    font-size: 18px; /* حجم الخط */
+    font-weight: 600 !important;
+}
+
+#orderMessage p {
+    color: #666; /* لون نص الفقرة */
+    line-height: 1.6; /* ارتفاع السطر لتحسين القراءة */
+    margin: 10px 0 20px 0px; /* مسافة علوية وسفلية */
+}
+
+#orderMessage button {
+    background-color: #010101; /* لون خلفية الزر */
+    color: #fff; /* لون نص الزر */
+    border: none; /* إزالة إطار الزر الافتراضي */
+    border-radius: 4px; /* حواف دائرية للزر */
+    padding: 10px 40px; /* مسافة داخلية حول النص */
+    font-size: 16px; /* حجم خط النص */
+    cursor: pointer; /* تغيير المؤشر عند المرور على الزر */
+    transition: background-color 0.3s; /* تأثير انتقالي عند تغيير اللون */
+}
+
+#orderMessage button:hover {
+    background-color: #000; /* لون خلفية الزر عند التمرير فوقه */
+}
+
+@media screen and (max-width:700px) {
+    #orderMessage {
+        width: 80%;
+    }
+}
+</style>
+
+
+
+    <form id="orderForm">
+     <h3 style="margin-right: 5%;">قم بأدخال التفاصيل :</h3>
+     <label for="customer-name">اسم الزبون:</label>
+     <input type="text" id="customer-name" required class="klgdfh" name="your-name">
+ 
+     <label for="customer-phone">رقم الهاتف:</label>
+     <input type="tel" id="customer-phone" required class="klgdfh" name="your-number">
+ 
+     <div id="address-field" style="display: block;">
+         <label for="customer-address">عنوان التوصيل:</label>
+         <input type="text" id="customer-address" placeholder="اكتب عنوانك هنا" class="klgdfh" name="address">
+         <input type="text" id="customer-message" class="klgdfh" name="message" style="display: none;">
+         <input type="text" id="customer-price" class="klgdfh" name="price" style="display: none;">
+     </div>
+ 
+     <div>
+         <input type="checkbox" id="pickup-checkbox" onclick="toggleAddressField()" name="take" style="margin-top: 20px; margin-right: 5%;">
+         <span for="pickup-checkbox">أريد استلام الطلب من الفرع</span>
+     </div>
+ 
+     <button type="button" onclick="submitOrder()" style="width: 90%; margin: auto; display: block; height: 36px; margin-top: 40px;width: 90%;
+     margin: auto;
+     display: block;
+     height: 40px;
+     margin-top: 40px;
+     font-size: 16px;
+     color: white;
+     border-radius: 5px;
+     background: #171717;
+     font-weight: 600;">إرسال الطلب</button>
+    </form>
+ </div>
+ 
+
+<style>
+    #checkout-form label{
+        display: block;
+        display: block;
+        margin: 15px;
+        margin-right: 5%;
+    }
+    .klgdfh{
+        display: block;
+        width: 90%;
+        margin: auto;
+        display: block;
+        height: 25px;
+        text-align: right;
+    }
+</style>
+<div id="buttonsContainer">
+    <button class="button" data-type="other" onclick="hideItems1()">
+        <img src="french-fries-svgrepo-com.svg" alt="Other" width="50">
+        <span>أخرى</span>
+    </button>
+    <button class="button" data-type="drinks" onclick="hideItems2()">
+        <img src="drink-soda-svgrepo-com.svg" alt="Drinks" width="50">
+        <span>مشروبات</span>
+    </button>
+    <button class="button" data-type="checkin" onclick="hideItems3()">
+        <img src="burger-svgrepo-com (1).svg" alt="Checkin" width="50">
+        <span>دجاج</span>
+    </button>
+    <button class="button" data-type="meat" onclick="hideItems4()">
+        <img src="burger-svgrepo-com.svg" alt="Meat" width="50">
+        <span>عجل</span>
+    </button>
+</div>
+<script>
+    function hideItems1() {
+        const itemsToHide = document.querySelectorAll(".checkin, .drinks, .meat");
+        itemsToHide.forEach(item => item.style.display = "none");
+        
+        const otherItems = document.querySelectorAll(".other");
+        otherItems.forEach(item => item.style.display = "block"); // Ensure 'other' stays visible
+    }
+
+    function hideItems2() {
+        const itemsToHide = document.querySelectorAll(".meat, .other, .checkin");
+        itemsToHide.forEach(item => item.style.display = "none");
+        
+        const drinks = document.querySelectorAll(".drinks");
+        drinks.forEach(item => item.style.display = "block"); // Ensure 'drinks' stays visible
+    }
+
+    function hideItems3() {
+        const itemsToHide = document.querySelectorAll(".meat, .other, .drinks");
+        itemsToHide.forEach(item => item.style.display = "none");
+        
+        const checkinItems = document.querySelectorAll(".checkin");
+        checkinItems.forEach(item => item.style.display = "block"); // Ensure 'checkin' stays visible
+    }
+
+    function hideItems4() {
+        const itemsToHide = document.querySelectorAll(".checkin, .other, .drinks");
+        itemsToHide.forEach(item => item.style.display = "none");
+        
+        const meatItems = document.querySelectorAll(".meat");
+        meatItems.forEach(item => item.style.display = "block"); // Ensure 'meat' stays visible
+    }
+</script>
+<style>
+#buttonsContainer {
+    margin-top: 90px;
+    display: flex; /* استخدام flexbox لتوزيع العناصر */
+    justify-content: space-between; /* توزيع العناصر بالتساوي */
+    width: 100%; /* تأكد من أن الحاوية تأخذ كامل العرض */
+}
+
+.button {
+    flex: 1; /* يسمح لكل زر بأخذ نفس المساحة المتاحة */
+    margin: 10px; /* مسافة بين الأزرار */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    background-color: #bd2121;
+    color: white; /* لون النص */
+    padding: 8px 0px;
+}
+
+.button img {
+    display: block;
+    margin: 0 auto 5px; /* توسيط الصورة */
+    width: 30px;
+    filter: invert(1%) brightness(1000000%) contrast(100%);
+}
+
+</style>
+    <div class="container">
+        <div class="products" id="products-container" style="max-width: 1550px;
+    margin: auto;
+    display: grid;
+    gap: 10px;
+    padding: 5px;
+    direction: rtl;
+    margin-top: 10px;
+    ">
+            <!-- سيتم إنشاء المنتجات هنا ديناميكياً باستخدام JavaScript -->
+        </div>
+    </div>
+    
+
+    <div id="customize-modal" class="modal">
+        <div class="modal-content" style="    max-height: 90vh;
+    overflow: auto;">
+            <span class="close" onclick="closeCustomize()">&times;</span>
+            <h2 style="text-align: right;    margin-top: 30px;    margin-right: 30px;">اختار مكونات البرجر</h2>
+            <div id="customize-1" class="customize-options" style="padding: 0px 25px;    padding: 0px 25px;
+    margin-top: 35px;">
+                <div id="customize-1" class="customize-options">
+                    <label>
+                        <div class="text-image-container">
+                            <img src="cheese.jpg" alt="جبن" style="width: 65px;">
+                            <span>جبن</span>
+                        </div>
+                        <input type="checkbox" value="جبن" style="
+                            width: 15px;
+                            height: 15px;"                  
+                        >
+                    </label>
+                    <label>
+                        <div class="text-image-container">
+                            <img src="lettuce.jpg" alt="خس" style="width: 65px;">
+                            <span>خس</span>
+                        </div>
+                        <input type="checkbox" value="خس" style="
+                        width: 15px;
+                        height: 15px;"                  
+                    >
+                    </label>
+                    <label>
+                        <div class="text-image-container">
+                            <img src="tomato.jpg" alt="بندورة" style="width: 65px;">
+                            <span>بندورة</span>
+                        </div>
+                        <input type="checkbox" value="بندورة" style="
+                        width: 15px;
+                        height: 15px;"                  
+                    >
+                    </label>
+                    <label>
+                        <div class="text-image-container">
+                            <img src="cucumber.jpg" alt="خيار" style="width: 65px;">
+                            <span>خيار</span>
+                        </div>
+                        <input type="checkbox" value="خيار" style="
+                        width: 15px;
+                        height: 15px;"                  
+                    >
+                    </label>
+                    <label>
+                        <div class="text-image-container">
+                            <img src="catshup.jpg" alt="كاتشب" style="width: 65px;">
+                            <span>كاتشب</span>
+                        </div>
+                        <input type="checkbox" value="كاتشب" style="
+                        width: 15px;
+                        height: 15px;"                  
+                    >
+                    </label>
+                    <label>
+                        <div class="text-image-container">
+                            <img src="maionaze.jpg" alt="مايونيز" style="width: 65px;">
+                            <span>مايونيز</span>
+                        </div>
+                        <input type="checkbox" value="مايونيز" style="
+                        width: 15px;
+                        height: 15px;"                  
+                    >
+                    </label>
+                    <label>
+                        <div class="text-image-container">
+                            <img src="kari.jpg" alt="روتڤ كاري" style="width: 65px;">
+                            <span>روتڤ كاري</span>
+                        </div>
+                        <input type="checkbox" value="روتڤ كاري" style="
+                        width: 15px;
+                        height: 15px;"                  
+                    >
+                    </label>
+                    <label>
+                        <div class="text-image-container">
+                            <img src="zater.jpg" alt="روتڤ زعتر" style="width: 65px;">
+                            <span>روتڤ زعتر</span>
+                        </div>
+                        <input type="checkbox" value="روتڤ زعتر" style="
+                        width: 15px;
+                        height: 15px;"                  
+                    >
+                    </label>
+                </div>
+                
+                <button onclick="addToCart(1)"
+                    style="
+                        width: 100%;
+                        height: 37px;
+                        color: white;
+                        font-size: 16px;
+                        font-weight: 600;
+                        border: none;
+                        border-radius: 7px;
+                        background: #bd2121;
+                        margin-bottom: 30px;
+                    "
+                >اضف للكيس</button>
+                <p id="success-message" style="color: green; display: none;">تم إضافة الطلب إلى السلة!</p>
+            </div>
+        </div>
+    </div>
+<style>
+.customize-options label {
+    display: flex;
+    align-items: center; /* محاذاة العناصر عموديًا */
+    justify-content: space-between; /* توزيع الشيك بوكس في الجهة المقابلة */
+    /* padding: 10px 0px; */
+    direction: rtl;
+    border-top: 1px solid #e8e8e8;
+}
+
+.customize-options .text-image-container {
+    display: flex; /* جعل الصورة والنص بجانب بعضهما */
+    align-items: center; /* محاذاة النص مع الصورة عموديًا */
+}
+
+.customize-options img {
+    margin-left: 10px; /* إضافة مسافة بين الصورة والنص */
+}
+
+.customize-options input[type="checkbox"] {
+    margin-left: 10px; /* مسافة إضافية بين الشيك بوكس وبقية العناصر */
+}
+</style>
+
+    <div id="cart" class="cart-modal">
+        <h2 style="text-align: center; color: black; font-size: 43px; font-weight: 700; margin-top: 20px;    margin-bottom: 50px;">עגלת קניות</h2>
+        <div id="cart-items" style="
+            height: 100%;
+            overflow: auto;"></div>
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 15px 10px;   background: #fff;">
+            <p id="message" style="display: none; text-align: center;">السلة فارغة، يرجى إضافة منتجات للتمكن من اتمام الطلب</p>
+            <button id="checkout-button" onclick="checkout()"></button>
+            <button class="close-cart" onclick="closeCart()">اغلاق</button>
+        </div>
+        
+    </div>
+    
+    <div id="global-success-message" style="  
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(0 0 0);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    z-index: 2;
+    font-size: 13px;
+    text-align: center;
+    direction: rtl;">
+        تم إضافة المنتج إلى الكيس
+    </div>
+    
+    <footer>
+        <p style="text-align: center;">&copy; 2024 Sari Burgers</p>
+    </footer>
+
+    <script src="script.js"></script>
+    </div>
+</body>
+</html>
+
+
+
+<script>
+    window.addEventListener('load', function() {
+        const loader = document.getElementById('loader');
+        const content = document.querySelector('.wrapper'); // Update this line to use .wrapper selector
+
+        // Hide the loader and show the content
+        loader.style.display = 'none';
+        content.style.display = 'block';
+    });
+</script>
+
+  
