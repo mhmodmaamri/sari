@@ -428,69 +428,6 @@ function checkout() {
         messageElement.style.display = 'block'; // عرض الرسالة إذا لم يكن هناك منتجات في السلة
     }
 }
-
-function submitOrder() {
-    // جلب بيانات الزبون من الحقول
-    const customerName = document.getElementById('customer-name').value;
-    const customerPhone = document.getElementById('customer-phone').value;
-    const customerAddress = document.getElementById('customer-address').value;
-
-    // حساب القيمة الإجمالية للطلبية
-    const totalOrderPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-
-    // تعيين القيمة الإجمالية مع رمز العملة في الحقل المخفي
-    document.getElementById('customer-price').value = `${totalOrderPrice} ₪`;
-
-    const orderItems = cart.map(item => `${item.name} (x${item.quantity}) ${item.ingredients.length > 0 ? `\nمكونات: ${item.ingredients.join(', ')}` : ''}\n---------------------------------------`).join('\n');
-
-    // بناء الرسالة التي سيتم إرسالها
-    const orderMessage = `\n${orderItems}`;
-
-    // وضع الرسالة داخل حقل name="message"
-    document.getElementById('customer-message').value = orderMessage;
-
-    // إظهار اللودير قبل بدء الإرسال
-    document.getElementById('loader').style.display = 'block';
-
-    // إخفاء الرسالة السابقة (إن وجدت)
-    document.getElementById('orderMessage').style.display = 'none';
-
-    // إرسال الطلب إلى Google Sheets
-    const formData = new FormData();
-    formData.append('your-name', customerName);
-    formData.append('your-number', customerPhone);
-    formData.append('address', customerAddress);
-    formData.append('price', `${totalOrderPrice} ₪`); // إضافة السعر الكلي للطلبية مع رمز العملة
-    formData.append('message', orderMessage);
-
-    // طلب POST إلى Google Apps Script
-    fetch('https://script.google.com/macros/s/AKfycbz0p-sqbOOPkJiIGEBoX2_3nilq0a0OU4wkDIvNgk4omb5J3BRelUKLsYkBsxLTHEfK/exec', {
-        method: 'POST',
-        body: formData,
-    })
-    .then(response => response.json())
-    .then(data => {
-        // إخفاء اللودير بعد إتمام الإرسال
-        document.getElementById('loader').style.display = 'none';
-        
-        if (data.result === 'success') {
-            // إظهار الرسالة التي تحتوي على اسم الزبون
-            document.getElementById('orderMessage').innerText = `تم إرسال الطلب بنجاح، شكرًا لك يا ${customerName}!`;
-            document.getElementById('orderMessage').style.display = 'block';
-            
-            // إعادة تعيين الحقول
-            document.getElementById('orderForm').reset();
-        } else {
-            alert('حدث خطأ أثناء إرسال الطلب. حاول مرة أخرى.');
-        }
-    })
-    .catch(error => {
-        console.error('خطأ في الإرسال:', error);
-        alert('حدث خطأ في الاتصال. حاول مرة أخرى.');
-        // إخفاء اللودير في حالة الخطأ
-        document.getElementById('loader').style.display = 'none';
-    });
-}
 function submitOrder() {
     // جلب بيانات الزبون من الحقول
     const customerName = document.getElementById('customer-name').value;
@@ -523,33 +460,47 @@ function submitOrder() {
     // إخفاء الرسالة السابقة (إن وجدت)
     document.getElementById('orderMessage').style.display = 'none';
 
-    // إرسال الطلب إلى Google Sheets
+    // إعداد بيانات النموذج
     const formData = new FormData();
     formData.append('your-name', customerName);
     formData.append('your-number', customerPhone);
-    formData.append('address', customerAddress); // يمكن تركه فارغًا إذا لم يقم الزبون بملئه
-    formData.append('price', `${totalOrderPrice} ₪`); // إضافة السعر الكلي للطلبية مع رمز العملة
+    formData.append('address', customerAddress);
+    formData.append('price', `${totalOrderPrice} ₪`);
     formData.append('message', orderMessage);
 
-    // طلب POST إلى Google Apps Script
+    // إرسال الطلب إلى Google Apps Script
     fetch('https://script.google.com/macros/s/AKfycbz0p-sqbOOPkJiIGEBoX2_3nilq0a0OU4wkDIvNgk4omb5J3BRelUKLsYkBsxLTHEfK/exec', {
         method: 'POST',
         body: formData,
     })
     .then(response => response.json())
     .then(data => {
+        if (data.result === 'success') {
+            // إرسال البيانات إلى Formspree بعد نجاح الإرسال إلى Google Sheets
+            return fetch('https://formspree.io/f/mvgopwjw', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+        } else {
+            throw new Error('فشل الإرسال إلى Google Sheets');
+        }
+    })
+    .then(response => {
         // إخفاء اللودير بعد إتمام الإرسال
         document.getElementById('loader').style.display = 'none';
-        
-        if (data.result === 'success') {
+
+        if (response.ok) {
             // إظهار الرسالة التي تحتوي على اسم الزبون
-            document.getElementById("customerName").innerText = customerName;
+            document.getElementById('customerName').innerText = `${customerName}`;
             document.getElementById('orderMessage').style.display = 'block';
-            document.getElementById("orderForm").style.display = "none";
+            document.getElementById('orderForm').style.display = "none";
             // إعادة تعيين الحقول
             document.getElementById('orderForm').reset();
         } else {
-            alert('حدث خطأ أثناء إرسال الطلب. حاول مرة أخرى.');
+            alert('حدث خطأ أثناء إرسال الطلب إلى Formspree. حاول مرة أخرى.');
         }
     })
     .catch(error => {
@@ -559,3 +510,4 @@ function submitOrder() {
         document.getElementById('loader').style.display = 'none';
     });
 }
+
