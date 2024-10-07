@@ -30,8 +30,8 @@ const products = [
     {
         id: 8,
         name: "برجر كرسبي دجاج كبير",
-        price: 35,
-        discount: 50,
+        price: 25,
+        discount: 35,
         type: "checkin",
         image: '1.jpg',
         CartAdding: "bld",
@@ -39,8 +39,8 @@ const products = [
     {
         id: 29,
         name: "برجر كرسبي دجاج صغير",
-        price: 100,
-        discount: 150,
+        price: 10,
+        discount: 15,
         image: '8.jpg',
         type: "checkin",
         CartAdding: "bld",
@@ -75,8 +75,8 @@ const products = [
     {
         id: 58,
         name: "برجر شنيتسل صغير ",
-        price: 100,
-        discount: 150,
+        price: 10,
+        discount: 15,
         type: "checkin",
         image: '10.jpg',
         CartAdding: "bld",
